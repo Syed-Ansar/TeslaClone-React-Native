@@ -3,34 +3,35 @@ import { View, Text, ImageBackground } from 'react-native';
 import StyledButton from '../StyledButton';
 import styles from './styles';
 
-function CarItem() {
+const CarItem = (props) => {
+  const { name, tagline, image, taglineCTA } = props.cars;
   return (
     <View style={styles.carContainer}>
-      <ImageBackground
-        style={styles.image}
-        source={require('../../assets/images/ModelS.jpeg')}
-      />
+      <ImageBackground style={styles.image} source={image} />
       <View style={styles.titles}>
-        <Text style={styles.title}>Model S</Text>
-        <Text style={styles.subtitle}>starting at $60,000</Text>
+        <Text style={styles.title}>{name}</Text>
+        <Text style={styles.subtitle}>
+          {tagline} <Text style={styles.subtitleCTA}>{taglineCTA} </Text>
+        </Text>
       </View>
-
-      <StyledButton
-        type='primary'
-        content={'Custom Button'}
-        onPress={() => {
-          console.warn('Custom was pressesed');
-        }}
-      />
-      <StyledButton
-        type='secondary'
-        content={'Existing Inventory'}
-        onPress={() => {
-          console.warn('Existing Inventory was pressesed');
-        }}
-      />
+      <View style={styles.buttonContainer}>
+        <StyledButton
+          type='primary'
+          content={'Custom Button'}
+          onPress={() => {
+            console.warn('Custom was pressesed');
+          }}
+        />
+        <StyledButton
+          type='secondary'
+          content={'Existing Inventory'}
+          onPress={() => {
+            console.warn('Existing Inventory was pressesed');
+          }}
+        />
+      </View>
     </View>
   );
-}
+};
 
 export default CarItem;
